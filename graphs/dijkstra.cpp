@@ -1,5 +1,5 @@
 //Dijkstra's algorithm on an undirected, weighted graph to calculate the distance from a specified node to all the other nodes (LLONG_MAX if node unreachable)
-//autor: Krzysztof Hałubek
+//author: Krzysztof Hałubek
 #include <iostream>
 #include <vector>
 #include <queue>
