@@ -1,5 +1,5 @@
 //Bellman-Ford algorithm to calculate the distance from a specified node to all the other nodes (>= 1e18 if node unreachable) in a directed, weighted graph with negative edges and without negative cycles
-//autor: Krzysztof Hałubek
+//author: Krzysztof Hałubek
 #include <iostream>
 #include <vector>
 
