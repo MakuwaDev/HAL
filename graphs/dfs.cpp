@@ -27,7 +27,6 @@ int main()
 		graph[a].push_back(b);
 		graph[b].push_back(a);
 	}
-	dfs(1);
-	for (size_t i = 1; i <= n; ++i)
-		std::cout << visited[i] << "\n";
+	std::cout.flush();
+	_Exit(0);
 }
