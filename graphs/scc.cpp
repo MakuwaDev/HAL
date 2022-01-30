@@ -1,5 +1,5 @@
 //Algorithm to generate Strongly Connected Components in a given directed graph by assigning every node a number that represents it's division
-//autor: Krzysztof Hałubek
+//author: Krzysztof Hałubek
 #include <iostream>
 #include <vector>
 #include <queue>
