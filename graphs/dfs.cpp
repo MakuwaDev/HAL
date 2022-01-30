@@ -1,5 +1,5 @@
 //Depth First Search on an undirected graph to determine whether other nodes are accessible from a specified node
-//autor: Krzysztof Hałubek
+//author: Krzysztof Hałubek
 #include <iostream>
 #include <vector>
 
