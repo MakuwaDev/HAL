@@ -59,9 +59,6 @@ int main()
 		graph[a].push_back(b);
 		transposed_graph[b].push_back(a);
 	}
-	generate_strongly_connected_components(n);
-	for (size_t i = 1; i <= n; ++i)
-		std::cout << division[i] << " ";
 	std::cout.flush();
 	_Exit(0);
 }
