@@ -45,5 +45,5 @@ int main()
 		graph[b].push_back({ c, a });
 	}
 	std::cout.flush();
-	_Exit(0)
+	_Exit(0);
 }
