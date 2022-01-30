@@ -1,4 +1,4 @@
-//Depth First Search on a directed graph to determine whether other nodes are accessible from a specified node
+//Depth First Search on an undirected graph to determine whether other nodes are accessible from a specified node
 //autor: Krzysztof Hałubek
 #include <iostream>
 #include <vector>
