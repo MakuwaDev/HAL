@@ -1,5 +1,5 @@
 //Algorithm to generate topologically ordered list of nodes of given Directed Acyclic Graph
-//autor: Krzysztof Hałubek
+//author: Krzysztof Hałubek
 #include <iostream>
 #include <vector>
 #include <queue>
