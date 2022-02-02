@@ -1,4 +1,4 @@
-//Floyd-Warshall algorithm to print the distance between all pairs of nodes ('*' if no path between a pair doesn't exist and '-oo' if the lightest path between a pair doesn't exist) in a directed weighted graph with positive or negative edge weights, but without negative cycles
+//Floyd-Warshall algorithm to print the distance between all pairs of nodes ('*' if no path between a pair doesn't exist and '-oo' if the lightest path between a pair doesn't exist) in a directed weighted graph with positive or negative edge weights
 //author: Krzysztof Hałubek
 #include <iostream>
 #include <vector>
