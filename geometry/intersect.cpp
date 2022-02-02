@@ -1,7 +1,6 @@
 //Algorithm to determine whether two lines intersect with each other, the lines' tips have whole coordinates
 //author: Krzysztof Hałubek
 #include <iostream>
-#include <bitset>
 
 class point
 {
