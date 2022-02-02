@@ -1,4 +1,4 @@
-//Algorithm to sort angularly a given set of points relatively to the point with the smallest first coordinate (if we have several such points we choose the one with the smallest second coordinate)
+//Algorithm to sort angularly a given set of points with whole coordinates relatively to the point with the smallest first coordinate (if we have several such points we choose the one with the smallest second coordinate)
 //author: Krzysztof Hałubek
 #include <iostream>
 #include <vector>
