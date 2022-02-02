@@ -1,4 +1,4 @@
-//Algorithm to determine wheter given point is located on the edge of a polygon (returns 0), inside the polygon (return 1) or outside of it (returns -1) the polygon shall be defined as a set of points
+//Algorithm to determine wheter given point (with whole coordinates) is located on the edge of a polygon (returns 0), inside the polygon (return 1) or outside of it (returns -1) the polygon shall be defined as a clockwise ordered set of points with whole coordinates
 //author: Krzysztof Hałubek
 #include <iostream>
 #include <limits>
