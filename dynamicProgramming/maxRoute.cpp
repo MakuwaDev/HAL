@@ -2,8 +2,8 @@
 //author: Krzysztof Hałubek
 #include <iostream>
 
-constexpr int MAXN = 1e3 + 10;
-constexpr int MAXM = 1e3 + 10;
+constexpr int MAXN = 1e3 + 10; //insert the maximum length of one of the rectangles' sides
+constexpr int MAXM = 1e3 + 10; //insert the maximum length of the other of the rectangle's sides
 
 long long dp[MAXN][MAXN];
 int n, m;
