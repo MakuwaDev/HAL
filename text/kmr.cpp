@@ -1,4 +1,4 @@
-//Algorithm to generate a sparse table for the karp_miller_rosenberg algorithm in O(n log n) which allows to lexicographically compare any two substrings of a given string
+//Algorithm to generate a sparse table for the karp_miller_rosenberg algorithm in O(n log n) which allows to lexicographically compare any two substrings of a given string in O(1)
 //Authors: Jakub Bachurski, Krzysztof Hałubek
 #include <functional>
 #include <algorithm>
