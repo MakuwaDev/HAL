@@ -68,7 +68,7 @@ public:
     }
     matrix operator ^(long long& k)
     {
-        int n = t.size();
+        size_t n = t.size();
         long long b = k;
         matrix W(n, n), A = *this;
         W.makeNeutral();
