@@ -1,5 +1,5 @@
-//Program to check wheter two sets of points (of the same size) are equal to each other if angularly rotated (by any angle) around point (0, 0)
-//Author: Krzysztof Hałubek, with the help of Paweł Zalewski and Miłosz Wąsiniak
+//Program to check wheter two sets of points (of the same size) are equal to each other if angularly rotated (by any angle) around point (0, 0) in O(nlogn)
+//Author: Krzysztof Hałubek, with the help of Paweł Zalewski and Miłosz Wąsinianlok
 #include <iostream>
 #include <vector>
 #include <algorithm>
