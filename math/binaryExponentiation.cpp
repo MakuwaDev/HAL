@@ -1,5 +1,5 @@
-//Program to compute kth power of n in log2(k) using binary exponentiation
-
+//Program to compute kth power of n in O(logk) using binary exponentiation
+//Author: Krzysztof Hałubek
 #include <iostream>
 static inline long long power_fast(long long a, long long pow)noexcept
 {
