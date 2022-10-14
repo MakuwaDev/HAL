@@ -1,4 +1,4 @@
-//Function to calculate greatest common divisor for given a, b in logn time
+//Algorithm to calculate greatest common divisor for given a, b in logn time
 //Author: Krzysztof Hałubek
 #include <iostream>
  
