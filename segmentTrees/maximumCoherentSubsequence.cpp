@@ -41,6 +41,7 @@ private:
 		returnnode.pref = std::max(left.pref, left.sum + right.pref);
 		returnnode.suf = std::max(right.pref, right.sum + left.suf);
 		returnnode.psoms = std::max(left.suf + right.pref, std::max(left.psoms, right.psoms));
+		return returnnode;
 	}
 public:
 	tree()
@@ -48,7 +49,7 @@ public:
 		for (size_t i = TREESIZE; i < 2 * TREESIZE; i++)
 		{
 			TREE[i].sum = TREE[i].psoms = TREE[i].suf = TREE[i].pref = 0;
-			TREE[i].left = TREE[i].right;
+			TREE[i].left = TREE[i].right = i;
 		}
 		for (size_t i = TREESIZE - 1; i > 0; i--)
 		{
