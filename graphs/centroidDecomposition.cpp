@@ -1,4 +1,5 @@
 //Algorithm to perform centroid decomposition on a tree in O(nlogn), the algorithm generates a rooted tree such that centroidTree[v] contains children of v, and parent[v] is the father of v in the decomposed tree
+//Warning: In order to construct the centroid tree, following algorithm deletes the given tree, so if you want to use it later, make sure to make a copy of it
 //Author: Krzysztof Hałubek
 #include <iostream>
 #include <vector>
