@@ -13,7 +13,7 @@ std::vector<int> graph[MAX_VERTICES], transposed_graph[MAX_VERTICES];
 bool visited[MAX_VERTICES];
 int division[MAX_VERTICES];
 std::vector<int> postorder;
-int assignment[MAX_VARIABLES];
+bool assignment[MAX_VARIABLES];
 
 void graph_dfs(int v)
 {
