@@ -30,7 +30,7 @@ long long product(point A, point B, point C)
 	return ((C.x - A.x) * (B.y - A.y) - (B.x - A.x) * (C.y - A.y));
 }
 
-bool comp(int a, int b)
+bool comp(size_t a, size_t b)
 {
 	point A = coordinates[a], B = coordinates[b];
 	if (A == p0) return true;
