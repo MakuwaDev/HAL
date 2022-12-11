@@ -41,7 +41,7 @@ void turboMatching(int n)
 	{
 		any = false;
 		std::fill(visited, visited + n, false);
-		for (size_t u = 0; u < n; u++)
+		for (int u = 0; u < n; u++)
 			if (match[u] == NUL && augment(u)) any = true;
 	}
 }
