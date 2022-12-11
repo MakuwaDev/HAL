@@ -17,7 +17,7 @@ bool augment(int u)
 	if (visited[u]) return false;
 	visited[u] = true;
 	for (auto v : graph[u])
-		if (match[u] == NUL)
+		if (match[v] == NUL)
 		{
 			match[u] = v; 
 			match[v] = u;
@@ -26,7 +26,7 @@ bool augment(int u)
 	for (auto v : graph[u])
 		if (augment(match[v]))
 		{
-			match[u] = v;
+			match[u] = v; 
 			match[v] = u;
 			return true;
 		}
@@ -36,13 +36,13 @@ bool augment(int u)
 void turboMatching(int n)
 {
 	std::fill(match, match + n, NUL);
-	bool czy = true;
-	while (czy)
+	bool any = true;
+	while (any)
 	{
-		czy = false;
+		any = false;
 		std::fill(visited, visited + n, false);
-		for (int u = 1; u <= n; ++u)
-			if (match[u] == NUL && augment(u)) czy = true;
+		for (size_t u = 0; u < n; u++)
+			if (match[u] == NUL && augment(u)) any = true;
 	}
 }
 
@@ -52,13 +52,15 @@ int main()
 	std::cin.tie(nullptr);
 	int n, m, e, a, b;
 	std::cin >> n >> m >> e;
-	for (int i = 0; i < e; ++i)
+	while (true)
 	{
 		std::cin >> a >> b;
+		--a;
+		--b;
 		graph[a].push_back(b);
 		graph[b].push_back(a);
 	}
 	turboMatching(n + m);
-	for (int i = 1; i <= n + m; ++i)
-		std::cout << match[i] << " ";
+	for (int i = 0; i < n + m; ++i)
+		std::cout << match[i] + 1 << " ";
 }
