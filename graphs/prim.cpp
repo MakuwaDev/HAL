@@ -10,27 +10,25 @@ constexpr size_t MAXM = (size_t)3e5 + 5; //insert the maximum amount of edges
 std::vector<std::pair<long long, size_t>> graph[MAXN];
 bool visited[MAXN];
 
-long long findMST(size_t start, size_t n) //the node from which you start doesn't matter at all, however it makes it easier to modify the algorithm in the future
+long double prim(int start, int n)
 {
-	std::priority_queue<std::pair<long long, size_t>, std::vector<std::pair<long long, size_t>>, std::greater<std::pair<long long, size_t>>> q;
-	size_t sajz = 1, res = 0, v;
-	long long e;
+	std::priority_queue<std::pair<long long, int>, std::vector<std::pair<long long, int>>, std::greater<std::pair<long long, int>>> q;
+	long long res = 0, e;
+	int v, sz = 1;
 	visited[start] = true;
 	for (auto x : graph[start])
 		q.push(x);
-	while (sajz <= n)
+	while (sz < n)
 	{
 		e = q.top().first;
 		v = q.top().second;
 		q.pop();
-		if (!visited[v])
-		{
-			sajz++;
-			visited[v] = true;
-			res += e;
-			for (auto x : graph[v])
-				if (!visited[x.second]) q.push(x);
-		}
+		if (visited[v]) continue;
+		++sz;
+		visited[v] = true;
+		res += e;
+		for (auto x : graph[v])
+			if (!visited[x.second]) q.push(x);
 	}
 	return res;
 }
