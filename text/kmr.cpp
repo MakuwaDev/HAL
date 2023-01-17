@@ -1,82 +1,109 @@
-//Algorithm to generate a sparse table for the karp_miller_rosenberg algorithm in O(n log n) which allows to lexicographically compare any two substrings of a given string in O(1)
-//Authors: Jakub Bachurski, Krzysztof Hałubek
-#include <functional>
-#include <algorithm>
-#include <cstddef>
-#include <utility>
-#include <numeric>
+//Karp-Miller-Rabin algorithm, which allows to compute a perfect identifier id(s) for each substring, such that id(a) = id(b) <=> a = b and id(a) < id(b) <=> a < b. Complexity: O(nlogn)
+//Author: Krzysztof Hałubek
+#include <iostream>
 #include <vector>
+#include <algorithm>
 
-using std::size_t;
-using std::vector; using std::pair;
-using std::iota; using std::sort;
-using std::function;
-using std::__lg;
+constexpr int MAXN = 1000000;
+constexpr int MAXPOW = 21;
 
-struct karp_miller_rosenberg
+std::vector<std::pair<std::pair<int, int>, int>> pary;
+int KMR[MAXN][MAXPOW];
+
+int log2(int x)
 {
-    size_t n;
-    vector<vector<size_t>> T;
-
-    template<typename Iterator>
-    karp_miller_rosenberg(Iterator first, Iterator last)
+    int res = 0, pow = 1;
+    while (x > pow)
     {
-        n = distance(first, last);
-        vector<size_t> run(n);
+        pow *= 2;
+        res++;
+    }
+    return res;
+}
 
-        auto push_compressed = [&](function<bool(size_t)> prev_same) {
-            T.emplace_back(n);
-            for (size_t i = 0, f = 1; i < n; i++)
-                T.back()[run[i]] = (i and not prev_same(i) ? ++f : f);
-        };
-
-        iota(run.begin(), run.end(), 0);
-        sort(run.begin(), run.end(), [&](size_t i, size_t j) {
-            return first[i] < first[j];
-            });
-        push_compressed([&](size_t i) {
-            return first[run[i]] == first[run[i - 1]];
-            });
-
-        vector<vector<size_t>> buckets(n + 1);
-        for (size_t k = 1; (1u << k) <= n; k++)
+void bucketSort()
+{
+    std::vector<std::vector<std::pair<std::pair<int, int>, int>>> buckets;
+    buckets.resize(26);
+    for (auto& x : pary)
+        buckets[x.first.first].push_back(x);
+    pary.clear();
+    for(int i = 0; i < 26; ++i)
+        while (!buckets[i].empty())
         {
-            const size_t p = 1 << k, q = p >> 1;
-            iota(run.begin(), run.end(), 0);
-
-            auto bucketify = [&]() {
-                run.clear();
-                for (size_t v = 0; v < buckets.size(); v++)
-                {
-                    for (const auto& w : buckets[v])
-                        run.push_back(w);
-                    buckets[v].clear();
-                }
-            };
-            for (size_t i : run)
-                buckets[take1(k - 1, i + q)].push_back(i);
-            bucketify();
-            for (size_t i : run)
-                buckets[take0(k - 1, i)].push_back(i);
-            bucketify();
-
-            push_compressed([&](size_t i) {
-                return take0(k - 1, run[i - 1]) == take0(k - 1, run[i]) and
-                    take1(k - 1, run[i - 1] + q) == take1(k - 1, run[i] + q);
-                });
+            pary.push_back(buckets[i].back());
+            buckets[i].pop_back();
         }
-    }
-    size_t take0(size_t k, size_t i) const { return T[k][i]; }
-    size_t take1(size_t k, size_t i) const { return i < n ? T[k][i] : 0; }
+}
 
-    size_t sub(size_t i, size_t j) const
+void radixSort(int n)
+{
+    std::vector<std::vector<std::pair<std::pair<int, int>, int>>> buckets;
+    buckets.resize(n + 1);
+    for (auto& x : pary)
+        buckets[x.first.second].push_back(x);
+    pary.clear();
+    for (int i = 0; i < buckets.size(); ++i)
+        for (int j = 0; j < buckets[i].size(); ++j)
+            pary.push_back(buckets[i][j]);
+    for (int i = 0; i < n; ++i)
+        buckets[i].clear();
+    for (auto& x : pary)
+        buckets[x.first.first].push_back(x);
+    pary.clear();
+    for (int i = 0; i < buckets.size(); ++i)
+        for (int j = 0; j < buckets[i].size(); ++j)
+            pary.push_back(buckets[i][j]);
+}
+
+std::pair<int, int> identifier(int s, int l)
+{
+    int log = log2(l) - 1;
+    if (log < 0) log = 0;
+    return { KMR[s][log], KMR[s + l - (1 << log)][log] };
+}
+
+int main()
+{
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    int n, power = 1, log = 0, length = 2, id = 0, q, x, y;
+    std::pair<int, int>pom;
+    std::string s;
+    std::cin >> s;
+    n = s.size();
+    log = log2(n) - 1;
+    if(log < 0) log = 0;
+    for (int i = 0; i < n; ++i)
+        pary.push_back({ {s[i] - 'a', s[i] - 'a'}, i });
+    bucketSort();
+    pom = { -1, -1 };
+    for (int i = 0; i < n; ++i)
     {
-        const size_t d = j - i + 1, e = __lg(d);
-        return take0(e, i);
+        if (pom != pary[i].first)
+        {
+            pom = pary[i].first;
+            ++id;
+        }
+        KMR[pary[i].second][0] = id;
     }
-    std::pair<size_t, size_t> operator() (size_t i, size_t j)
+    for (int l = 1; l <= log; ++l)
     {
-        const size_t d = j - i + 1, e = __lg(d);
-        return {sub(i, i + (1<<e) - 1), sub(i + d - (1<<e), i + d - 1)};
+        pary.clear();
+        id = 0;
+        for (int i = 0; i + length - 1 < n; ++i)
+            pary.push_back({ {KMR[i][l - 1], KMR[i + length / 2][l - 1]}, i });
+        radixSort(n);
+        std::pair<int, int>pom = { -1, -1 };
+        for (int j = 0; j < pary.size(); ++j)
+        {
+            if (pom != pary[j].first)
+            {
+                pom = pary[j].first;
+                ++id;
+            }
+            KMR[pary[j].second][l] = id;
+        }
+        length = length << 1;
     }
-};
+}
